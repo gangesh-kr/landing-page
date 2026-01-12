@@ -3,6 +3,7 @@ import ScanScroll from './components/sections/ScanScroll';
 import FloatingCards from './components/sections/FloatingCards';
 import MapSection from './components/sections/MapSection';
 import SuccessSection from './components/sections/SuccessSection';
+import ContactSection from './components/sections/ContactSection';
 import { FeatureText } from './components/ui/FeatureText';
 import Navbar from './components/ui/Navbar';
 
@@ -80,6 +81,9 @@ function App() {
               isStatic={true}
             />
           </div>
+
+          {/* SECTION 6: CONTACT */}
+          <ContactSection />
 
           <div className="h-[20vh]" />
         </div>

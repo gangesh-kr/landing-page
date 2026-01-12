@@ -8,19 +8,23 @@ export default {
         extend: {
             colors: {
                 background: 'var(--bg-primary)',
-                accent: 'var(--accent)',
                 primary: 'var(--text-primary)',
                 secondary: 'var(--text-secondary)',
-                card: 'var(--card-bg)',
+                accent: {
+                    purple: 'var(--accent-purple)',
+                    green: 'var(--accent-green)',
+                },
+                surface: {
+                    glass: 'var(--surface-glass)',
+                    border: 'var(--surface-border)',
+                }
             },
             backgroundImage: {
                 'main-gradient': 'var(--bg-gradient)',
             },
-            borderRadius: {
-                lg: 'var(--radius-lg)',
-            },
             boxShadow: {
                 soft: 'var(--shadow-soft)',
+                glow: 'var(--shadow-glow)',
             }
         },
     },

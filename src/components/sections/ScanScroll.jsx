@@ -1,38 +1,12 @@
 import { useRef, useEffect } from 'react';
 import { useScrollFrames } from '../../hooks/useScrollFrames';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function ScanScroll() {
     const canvasRef = useRef(null);
     const { currentFrame, loading, progress } = useScrollFrames();
+    const { theme } = useTheme();
 
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas || !currentFrame) return;
-
-        const container = canvas.parentElement;
-        if (!container) return;
-
-        const ctx = canvas.getContext('2d');
-        const img = currentFrame;
-
-        // Using container dimensions
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-
-        // Calculate scale to cover
-        const scale = Math.max(width / img.width, height / img.height);
-        const x = (width / 2) - (img.width / 2) * scale;
-        const y = (height / 2) - (img.height / 2) * scale;
-
-        canvas.width = width;
-        canvas.height = height;
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-
-    }, [currentFrame]);
-
-    // Handle Resize
     useEffect(() => {
         const handleResize = () => {
             if (canvasRef.current && currentFrame) {
@@ -54,6 +28,8 @@ export default function ScanScroll() {
 
                 const ctx = canvas.getContext('2d');
                 ctx.clearRect(0, 0, width, height);
+
+                // Draw image
                 ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
             }
         };
@@ -86,7 +62,7 @@ export default function ScanScroll() {
                                 style={{ width: `${progress}%` }}
                             />
                         </div>
-                        <div className="mt-2 text-sm text-[var(--text-muted)]">{progress}%</div>
+                        <div className="mt-2 text-sm text-[var(--text-secondary)]">{progress}%</div>
                     </div>
                 </div>
             )}
